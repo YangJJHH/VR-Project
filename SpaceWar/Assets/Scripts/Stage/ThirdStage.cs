@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ThirdStage : MonoBehaviour
 {
+    public GameObject message_window;
     public GameObject startTrigger;
     public Text timerUI;
     GameObject[] tiles;
@@ -16,9 +18,11 @@ public class ThirdStage : MonoBehaviour
     bool[] isObstacle;
     bool isStart =false;
     Color defaultColor;
+    PlayerCtrl playerCtrl;
     // Start is called before the first frame update
     void Start()
     {
+        playerCtrl = GameObject.Find("Head").GetComponent<PlayerCtrl>();
         tiles = GameObject.FindGameObjectsWithTag("Tile"); //24X24 576
 
         defaultColor = tiles[0].GetComponent<Renderer>().material.color; 
@@ -37,10 +41,11 @@ public class ThirdStage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        if(startTrigger == null){
+        if(startTrigger == null){ //플레이어가 문을 넘어서 스테이지에 진입했을 때 부터 타이머 시작
             Timer();
             isStart=true;
         }
+        Check_Respawn();
         
     }
     void Timer(){
@@ -48,7 +53,7 @@ public class ThirdStage : MonoBehaviour
         timerUI.text="Survive\n"+(maxTime-(int)timer);
     }
 
-    void MakeObstacle(){
+    void MakeObstacle(){  // 함정이 생길 바닥타일을 랜덤한 패턴으로 정하고 색깔을 빨간색으로 바꾸어 미리 위험을 알려준다.
         int index;
         while(currentObstacle<maxObstacle){
             for(int i=0; i<maxObstacle; i++){
@@ -61,7 +66,7 @@ public class ThirdStage : MonoBehaviour
             }  
         }
     }
-    void DeleteObstacle(){
+    void DeleteObstacle(){ // 다음 패턴을 위해 바닥색을 지우고 초기화 시키는 작업
         for(int i=0; i<isObstacle.Length; i++){
             if(isObstacle[i]){
                 tiles[i].GetComponent<Renderer>().material.color = defaultColor;
@@ -71,13 +76,13 @@ public class ThirdStage : MonoBehaviour
         }
     }
 
-    IEnumerator FireStart(){
+    IEnumerator FireStart(){ //발깐색으로 장해진 바닥에 불기둥 오브젝트 활성화
         for(int i=0; i<isObstacle.Length; i++){
             if(isObstacle[i]){
                 fires[i].gameObject.SetActive(true);
             }
         }
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(5.0f);  //5초동안 활성화 시키고 다시 비활성화
         for(int i=0; i<isObstacle.Length; i++){
             if(isObstacle[i]){
                 fires[i].gameObject.SetActive(false);
@@ -105,5 +110,17 @@ public class ThirdStage : MonoBehaviour
             }
         }
         yield return null;
+    }
+
+    void Check_Respawn(){
+        //플레이어가 죽었을경우
+        if(playerCtrl.player_HP<= 0){
+            StartCoroutine(Respawn());
+        }
+    }
+      IEnumerator Respawn(){
+        message_window.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene("ThirdScene");
     }
 }
