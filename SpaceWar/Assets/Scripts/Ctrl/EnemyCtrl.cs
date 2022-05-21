@@ -30,7 +30,7 @@ public class EnemyCtrl : MonoBehaviour
 
     public void Attack(int damage, GameObject player){
         player.GetComponent<PlayerCtrl>().Attacked(damage);
-        player.GetComponent<Rigidbody>().AddForce(player.transform.forward *  20.0f);
+        player.GetComponent<Rigidbody>().AddForce(player.transform.forward *  10.0f);
     }
 
   

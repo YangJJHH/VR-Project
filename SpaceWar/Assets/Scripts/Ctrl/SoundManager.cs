@@ -37,5 +37,8 @@ public class SoundManager : MonoBehaviour
     public void Play_Fall(){
         audioSource.PlayOneShot(audioClip[9]);
     }
+    public void Play_Stage(){
+        audioSource.PlayOneShot(audioClip[10]);
+    }
 
 }
