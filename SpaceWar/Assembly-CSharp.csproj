@@ -207,10 +207,12 @@
      <Compile Include="Assets\Scripts\Ctrl\PlayerCtrl.cs" />
      <Compile Include="Assets\Scripts\Ctrl\SoundManager.cs" />
      <Compile Include="Assets\Scripts\Ctrl\UICtrl.cs" />
+     <Compile Include="Assets\Scripts\Drone.cs" />
      <Compile Include="Assets\Scripts\Elevator.cs" />
      <Compile Include="Assets\Scripts\EndPoint.cs" />
      <Compile Include="Assets\Scripts\Interact.cs" />
      <Compile Include="Assets\Scripts\ObjectType.cs" />
+     <Compile Include="Assets\Scripts\RotationObstacle.cs" />
      <Compile Include="Assets\Scripts\Stage\FirstStage.cs" />
      <Compile Include="Assets\Scripts\Stage\FourthStage.cs" />
      <Compile Include="Assets\Scripts\Stage\SecondStage.cs" />

@@ -15,6 +15,10 @@ public class SecondStage : MonoBehaviour
     public GameObject message_window;
 
     public GameObject door;
+    public GameObject spotLight;
+    public GameObject battery;
+    public GameObject flashLight;
+
     string password="0117";
     string password_input="";
 
@@ -29,6 +33,7 @@ public class SecondStage : MonoBehaviour
     {
         soundManager = GameObject.Find("Main Camera").GetComponent<SoundManager>();
         playerCtrl = GameObject.Find("Head").GetComponent<PlayerCtrl>();
+        StartCoroutine(FlashLight());
     }
 
     // Update is called once per frame
@@ -92,6 +97,13 @@ public class SecondStage : MonoBehaviour
         pos = new Vector3(0,0,5) + trapFloor[index].transform.position;
         trapFloor[index].transform.position = Vector3.Lerp(trapFloor[index].transform.position,pos,1.0f );
         
+    }
+
+    IEnumerator FlashLight(){
+        while(battery!=null || flashLight !=null){
+            yield return null;
+        }
+        spotLight.SetActive(true);
     }
 
     

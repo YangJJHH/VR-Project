@@ -58,6 +58,9 @@ public class Interact : MonoBehaviour
                 manager.Play_Interact();
                 Destroy(this.gameObject);
                 playerCtrl.player_HP += 10;
+                if(playerCtrl.player_HP>=100){
+                    playerCtrl.player_HP = 100;
+                }
                 break;
             case "Computer":
                 manager.Play_Interact();

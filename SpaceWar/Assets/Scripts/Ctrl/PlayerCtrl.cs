@@ -37,6 +37,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("Hp")){
             player_HP = PlayerPrefs.GetInt("Hp");
+            if(player_HP>=100) player_HP=100;
         }
         manager = GameObject.Find("Main Camera").GetComponent<SoundManager>();
     }
@@ -123,6 +124,8 @@ public class PlayerCtrl : MonoBehaviour
 
     //공격당했을때
     public void Attacked(int damage){
+        
         player_HP -= damage;
+        
     }
 }

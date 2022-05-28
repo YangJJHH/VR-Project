@@ -29,8 +29,9 @@ public class EnemyCtrl : MonoBehaviour
     }
 
     public void Attack(int damage, GameObject player){
+        Debug.Log("공격");
         player.GetComponent<PlayerCtrl>().Attacked(damage);
-        player.GetComponent<Rigidbody>().AddForce(player.transform.forward *  10.0f);
+        player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 0.0000005f,ForceMode.Impulse);
     }
 
   

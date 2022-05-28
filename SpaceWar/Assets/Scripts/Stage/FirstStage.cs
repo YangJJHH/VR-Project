@@ -14,7 +14,8 @@ public class FirstStage : MonoBehaviour
 
     public GameObject message_window;
     public GameObject player;
-    
+    public GameObject firstLight;
+    public GameObject[] lights;
     bool isPass= false;
     bool isCheck = false;
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class FirstStage : MonoBehaviour
         PlayerPrefs.DeleteAll();
         manager = GameObject.Find("Main Camera").GetComponent<SoundManager>();
         playerCtrl = GameObject.Find("Head").GetComponent<PlayerCtrl>();
+        StartCoroutine(FirstLight());
     }
 
     // Update is called once per frame
@@ -38,8 +40,31 @@ public class FirstStage : MonoBehaviour
             isPass = true; //왔다갔다 할때마다 중복되서 소리재생되지 않게
             StartCoroutine(StartClose());
             StartCoroutine(FireFloorMove());
+            StartCoroutine(LightTurnOn());
+            
             
         }
+    }
+    //조명 깜빡거림 효과
+    IEnumerator FirstLight(){
+        for(int i=0; i<3; i++){
+            firstLight.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            firstLight.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+            
+        }
+        firstLight.SetActive(true);
+        
+    }
+
+    IEnumerator LightTurnOn(){
+
+        for(int i=0; i<lights.Length; i++){
+            lights[i].SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+        }
+        
     }
 
     //첫번째 문부터 문 마다 코루틴 통해 닫히는 동작
