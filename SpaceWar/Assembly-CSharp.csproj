@@ -211,8 +211,11 @@
      <Compile Include="Assets\Scripts\Elevator.cs" />
      <Compile Include="Assets\Scripts\EndPoint.cs" />
      <Compile Include="Assets\Scripts\Interact.cs" />
+     <Compile Include="Assets\Scripts\MoveObstacle.cs" />
      <Compile Include="Assets\Scripts\ObjectType.cs" />
      <Compile Include="Assets\Scripts\RotationObstacle.cs" />
+     <Compile Include="Assets\Scripts\ShipDestroy.cs" />
+     <Compile Include="Assets\Scripts\SpaceShip.cs" />
      <Compile Include="Assets\Scripts\Stage\FirstStage.cs" />
      <Compile Include="Assets\Scripts\Stage\FourthStage.cs" />
      <Compile Include="Assets\Scripts\Stage\SecondStage.cs" />
