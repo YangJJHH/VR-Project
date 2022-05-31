@@ -7,13 +7,16 @@ public class Drone : MonoBehaviour
     GameObject player;
     int damage = 30;
     EnemyCtrl enemyCtrl;
+    SoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Head");
+        soundManager = GameObject.Find("Main Camera").GetComponent<SoundManager>();
         enemyCtrl=this.GetComponent<EnemyCtrl>();
         //플레이어 쪽으로 이동
         StartCoroutine(MoveToPlayer());
+        StartCoroutine(Sound());
     }
 
     // Update is called once per frame
@@ -29,5 +32,12 @@ public class Drone : MonoBehaviour
         enemyCtrl.HP=0;
         enemyCtrl.Attacked();
         
+    }
+
+    IEnumerator Sound(){
+        while(true){
+            soundManager.Play_Enemy();
+            yield return new WaitForSeconds(5.0f);
+        }
     }
 }

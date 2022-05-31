@@ -35,6 +35,10 @@ public class PlayerCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(PlayerPrefs.HasKey("posX")){
+            player.transform.position = new Vector3(PlayerPrefs.GetFloat("posX"),PlayerPrefs.GetFloat("posY"),PlayerPrefs.GetFloat("posZ"));
+        }
+
         if(PlayerPrefs.HasKey("Hp")){
             player_HP = PlayerPrefs.GetInt("Hp");
             if(player_HP>=100) player_HP=100;

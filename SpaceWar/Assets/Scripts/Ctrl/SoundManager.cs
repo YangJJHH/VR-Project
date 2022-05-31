@@ -10,7 +10,9 @@ public class SoundManager : MonoBehaviour
     void Play_BGM(){
 
     }
-
+    public void Play_Boomb(){
+        audioSource.PlayOneShot(audioClip[0]);
+    }
     public void Play_Attack(){
         audioSource.PlayOneShot(audioClip[1]);
     }
@@ -40,5 +42,10 @@ public class SoundManager : MonoBehaviour
     public void Play_Stage(){
         audioSource.PlayOneShot(audioClip[10]);
     }
+    public void Play_Enemy(){
+        int index = Random.Range(11,13);
+        audioSource.PlayOneShot(audioClip[index]);
+    }
+    
 
 }
